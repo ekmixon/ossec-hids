@@ -17,13 +17,13 @@ class OssecTester(object):
         self._test_path = "./tests"
 
     def buildCmd(self, rule, alert, decoder):
-        cmd = ['%s/ossec-logtest' % (self._ossec_path), ]
+        cmd = [f'{self._ossec_path}/ossec-logtest']
         cmd += ['-q']
         if self._ossec_conf:
             cmd += ["-c", self._ossec_conf]
         if self._base_dir:
             cmd += ["-D", self._base_dir]
-        cmd += ['-U', "%s:%s:%s" % (rule, alert, decoder)]
+        cmd += ['-U', f"{rule}:{alert}:{decoder}"]
         return cmd
 
     def runTest(self, log, rule, alert, decoder, section, name, negate=False):
